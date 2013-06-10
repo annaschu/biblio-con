@@ -4,7 +4,7 @@ import csv
 # load file - provide file path 
 path = '../LiteratureReviewEV_V2.json'
 
-# create a scv file for writing
+# create a csv file for writing
 #csv_file = csv.writer(open("../test.csv", "wb+"))
 csv_file = open("../test.csv", "wb+")
 csv_writer = csv.writer(csv_file, delimiter=";")
@@ -17,14 +17,9 @@ json_data=open(path)
 
 data = json.load(json_data)
 
-# walk through array row by row
-#surname = data[0].get('author')[0].get('family')
-#firstname = data[0].get('author')[0].get('given')
-
-auth_count = 0
-count = 0
 header_set = set()
 
+# walk through array row by row
 # for each publication get headers
 for publication in data:
     # we now have a dictionary of publication attributes
@@ -40,7 +35,6 @@ for publication in data:
 # write headers
 header_list = list(header_set)
 header_list.insert(0, unicode('id'))
-#print header_list
 
 csv_writer.writerow(header_list)
 author_writer.writerow(['publication_id', 'author_given', 'author_family'])
